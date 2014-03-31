@@ -65,4 +65,4 @@ Here are some of the assets Dimentions organizes:
 
 For an example of how Dimentions organizes things, consider: instead of describing the Universe's history, location descriptions, and so forth at the start of every roleplay, instead associate each roleplay with a Universe that contains those descriptions. That way, not only can you go look at the history and description from any page of the roleplay, but you can also easily see how many roleplays belong to any particular Universe.
 
-^(*More of this description will be written later.*)
+<sup>*More of this description will be written later.*</sup>
