@@ -1,3 +1,6 @@
 <?php
+include_once('necessary.php');
+?>
 
-phpinfo();
+<p>Hello, world!
+</p>
