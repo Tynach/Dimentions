@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><?php echo($this->title); ?> - Sample Dry Website</title>
+	</head>
+
+	<body>
+		<?php echo($this->getContent(2)); ?>
+	</body>
+</html>
