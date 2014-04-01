@@ -1,13 +1,12 @@
-# Coding Style Guidelines
-
+Coding Style Guidelines
+=======================
 This is the first project I'm making that will enforce specific style guidelines, and because of that, even I might be sloppy. Feel free to correct anywhere that I forget to stick to my own style!
 
-## Curly Braces and Indentation
-
+Curly Braces and Indentation
+----------------------------
 One of the main reasons I built this framework was so that I could control how the whitespace was managed in the output HTML. I have no idea why, but I'm incredibly picky about whitespace use; this extends into the behind-the-scenes code as well.
 
 ### Curly Brace Location
-
 For the most part, we'll be using Linux conventions. Things that can contain other things of the same type (for, while, if, and so forth statements) will put the beginning brace on the same line as the declaration or condition. For example:
 
     if ($blah) {
@@ -32,7 +31,6 @@ The ending curly brace should always go on its own line, except in the case of i
     }
 
 ### Indentation
-
 Indentation will be done with tabs. If you have a scenario where you want to line things up nicely within a single statement but across multiple lines, like:
 
     function blorg()
@@ -48,26 +46,27 @@ Then you use tabs up to the 'main' indentation level for that statement (in the 
 
 You can set your editor to use however many spaces you want for your displayed tab length, but keep in mind that I will consistently use 8 spaces per tab in my editors.
 
-## Naming
-
+Naming
+------
 Most things should be in CamelCase. However, constants (even fake ones like in config.php) should be in ALL_CAPS with underscores to separate words.
 
-### First Letter Case
-
+### In Code
 Classes should start with a capital letter. However, most other things should start with a lowercase letter.
 
 In fact, in general, things you'll call or interact with directly (such as variables, functions, objects, and methods), even through things like '`Class::method();`' or '`object->member;`', should start with a lower case letter.
 
 Things you interact with only indirectly in order to use objects/variables/values they contain (such as classes, abstract classes, interfaces, namespaces, or global objects/structs/whatever that just exist to contain other things you *do* directly interact with) should start with an uppercase letter.
 
-## Commenting Your Code
+### In Filenames
+In files, the first letter should **always** be lowercase, and from there, camelCase'd.
 
+Commenting Your Code
+--------------------
 I'm going to attempt to start documenting what code does, how, and why, via comments. Eventually a wiki will be started as well, but for now I just need to make sure that people reading the code understand what it's doing. To that end, I'm going to set some commenting guidelines.
 
 In all cases, comments should **not** go over the 80 column mark in your editor. For reference, that previous sentence I wrote is exactly 80 characters wide when viewing the raw Markdown (including the \*s used to put strong emphasis on 'not' and the period at the end). It doesn't matter if a comment should be on one line, when I say a 'one-line comment' that comment might go more than one line anyway. I'll demonstrate this in an example further down.
 
 ### Logic Files
-
 Logic files are files that contain mostly, or even only, PHP code. No HTML, no CSS, nothing but the 'business logic' of the website.
 
 Every logic file should start with a large, stylized, C-style comment that describes the nature of the code within. The comment will look something like this:
@@ -113,3 +112,8 @@ Single-line comments should generally go *at the end* of anything that's already
 Note: This is when the fact that I use 8 spaces per tab really comes into play. With 4 space tabs, that code would be well within the bounds. But with 8, it just barely makes it.
 
 Also note: One-line comments have one space between the '`//`' and the text. In fact, C-style comments also have one space padding the content from either delimiter.
+
+### Include Files
+For the purposes of this section of this document, 'include files' are PHP files that **only** have include() or include_once() statements. These are used to more dynamically control what files are necessary for different types of pages. For example, some pages don't need to use the database, while others do. Some don't even need to handle templating (they just handle API related things like logging in/out, or perhaps they just redirect to somewhere else).
+
+Include files will have a more-or-less one-line C-style block comment at the top, describing what sorts of pages should include/include_once the file. After that, use one-line comments above any include statement that has special instructions (for example, of the server admin needs to change one of the values to fit their environment).
