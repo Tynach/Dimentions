@@ -1,5 +1,13 @@
 <?php
 
+/**************************************************************************
+ * Default sample template. Puts one module inside a div, and puts the    *
+ * content of the page in the body by itself. This demonstrates different *
+ * indentation levels.                                                    *
+ *                                                                        *
+ * $this represents the current page.                                     *
+ **************************************************************************/
+
 $navigation = new Module('navigation.php');
 
 ?><!DOCTYPE html>

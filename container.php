@@ -15,10 +15,20 @@ abstract class Container
 {
 	private $content = '';
 
-	// Indent the contents of the container.
+	// Return an indented copy of the container's contents.
 	private function indent($indent)
 	{
-		return sprintf("%s\n", str_replace("\n", "\n".str_repeat(General::INDENT(), $indent), $this->content));
+		return sprintf(
+			"%s\n",
+			str_replace(
+				"\n",
+				sprintf(
+					"\n%s",
+					str_repeat(General::INDENT(), $indent)
+				),
+				$this->content
+			)
+		);
 	}
 
 	// Put the contents of the output buffer into the container.
@@ -28,7 +38,7 @@ abstract class Container
 		ob_end_clean();
 	}
 
-	// Get the contents of the container.
+	// Get the contents of the container, optionally indenting.
 	public function getContent($indent = 0)
 	{
 		if ($indent == 0) {
