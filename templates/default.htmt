@@ -5,7 +5,7 @@ $navigation = new Module('navigation.php');
 ?><!DOCTYPE html>
 <html>
 	<head>
-		<title><?php echo($this->title); ?> - Sample Dry Website</title>
+		<title><?php echo($this->title); ?> - Dimentions</title>
 		<meta charset="utf-8">
 	</head>
 
