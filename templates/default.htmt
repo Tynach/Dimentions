@@ -1,10 +1,18 @@
-<!DOCTYPE html>
+<?php
+
+$navigation = new Module('navigation.php');
+
+?><!DOCTYPE html>
 <html>
 	<head>
 		<title><?php echo($this->title); ?> - Sample Dry Website</title>
+		<meta charset="utf-8">
 	</head>
 
 	<body>
+		<div id="header">
+			<?php echo($navigation->getContent(3)); ?>
+		</div>
 		<?php echo($this->getContent(2)); ?>
 	</body>
 </html>
