@@ -1,4 +1,4 @@
-/* Ensure this PHP file parses as CSS in editors: <style> */
+/* Ensure this PHP file parses as CSS in editors: <style> /**/
 <?php
 
 // Tell browsers this is a CSS document
