@@ -13,14 +13,18 @@ $navigation = new Module('navigation.php');
 ?><!DOCTYPE html>
 <html>
 	<head>
-		<title><?php echo($this->title); ?> - Dimentions</title>
+		<title><? echo $this->title ?> - Dimentions</title>
 		<meta charset="utf-8">
+
+		<link rel="stylesheet" type="text/css" href="styles/main.css">
 	</head>
 
 	<body>
-		<div id="header">
-			<?php echo($navigation->getContent(3)); ?>
+		<header>
+			<? echo $navigation->getContent(3) ?>
+		</header>
+		<div id="content">
+			<? echo $this->getContent(3) ?>
 		</div>
-		<?php echo($this->getContent(2)); ?>
 	</body>
 </html>

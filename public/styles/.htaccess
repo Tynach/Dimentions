@@ -1,0 +1,4 @@
+<Directory />
+	RewriteEngine on
+	RewriteRule \.php(\.[[:alnum:][:punct:]]+)$ $1
+</Directory>
