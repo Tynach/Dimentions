@@ -1,14 +1,16 @@
-/* Ensure this PHP file parses as CSS in editors: <style> /**/
 <?php
+
+ob_start() ?>
+/* Ensure this PHP file parses as CSS in editors: <style> /**/<?
+ob_end_clean();
 
 // Tell browsers this is a CSS document
 header("Content-type: text/css; charset: UTF-8");
 
 // Variables to use in the CSS
-$navWidth
+$navWidth;
 
 ?>
-
 /*****************
  * Global Styles *
  *****************/
