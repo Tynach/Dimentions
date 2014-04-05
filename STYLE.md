@@ -95,7 +95,7 @@ One-line comments should also go above or at the end of anything you feel needs 
 
 In general, single-line comments go *above* the thing you're explaining when it's a group or series of things that are all related, such as a group of variable declarations or the start of a block.
 
-Single-line comments should generally go *at the end* of anything that's already inside a group or series of related things. These should generally be much shorter, if possible. Otherwise you start doing this:
+Single-line comments should generally go *at the end* of any line that's already inside a group or series of related things. These should generally be much shorter, if possible. Otherwise you start doing this:
 
     if (1) {
     	while (2) {
@@ -103,13 +103,13 @@ Single-line comments should generally go *at the end* of anything that's already
     			for ($i = 0; i < 1000000; i--) {
     				function() {
     					printf("Hello, world!\n"); // This is
-    				}                                  // just ridi-
-    			}                                          // culous!
+    				}	                           // just ridi-
+    			}		                           // culous!
     		}
     	}
     }
 
-Note: This is when the fact that I use 8 spaces per tab really comes into play. With 4 space tabs, that code would be well within the bounds. But with 8, it just barely makes it.
+Note: This is when the fact that I use 8 spaces per tab really comes into play. With 4 space tabs, that code would be well within the bounds. But with 8, it just barely makes it. It's also worth noting that tabs should be used up to the point where the most indented line is indented, and *then* spaces should be used. View the source of this document and look at the above example.
 
 Also note: One-line comments have one space between the '`//`' and the text. In fact, C-style comments also have one space padding the content from either delimiter.
 
@@ -117,3 +117,53 @@ Also note: One-line comments have one space between the '`//`' and the text. In 
 For the purposes of this section of this document, 'include files' are PHP files that **only** have include() or include_once() statements. These are used to more dynamically control what files are necessary for different types of pages. For example, some pages don't need to use the database, while others do. Some don't even need to handle templating (they just handle API related things like logging in/out, or perhaps they just redirect to somewhere else).
 
 Include files will have a more-or-less one-line C-style block comment at the top, describing what sorts of pages should include/include_once the file. After that, use one-line comments above any include statement that has special instructions (for example, of the server admin needs to change one of the values to fit their environment).
+
+Tags
+----
+
+### PHP
+The placement of PHP's start and end tags depends on how you are using the PHP. The idea is that how you use it should convey a consistent meaning across similar instances.
+
+If your file ends with PHP code, leave off the ending tag.
+
+#### Inline with Output
+If, and **only** if, you need to echo a variable inside what is otherwise *not* PHP, you should write your PHP inline with your document. This essentially means you'll have your document's code to the right of your PHP, and more to the left of your PHP.
+
+When using inline PHP, use short PHP tags. The word 'php' at the end lowers readability and takes the focus away from the actual code's content, because mixing two languages like this already forces the brain to switch contexts.
+
+In general, having as little inline code as possible will improve readability. Here's an example of PHP code inline with HTML:
+
+    <!-- This is wrong: -->
+    <title><?php echo($title); ?> - My Website</title>
+    
+    <!-- This is right: -->
+    <title><? echo $title ?> - My Website</title>
+
+I'm not sure if I like the shorter '`<?= $title ?>`' form or not; seeing '`?=`' makes me automatically think it's asking a question, or assigning a value; looks almost like a contender for replacing '`==`'. Using '`echo`' clearly indicates what the code does, so I personally prefer it.
+
+#### Large block
+Any time you have a block of code that has nothing to do with generating output, use the full '`<?php`' start tag. If this is at the top of the document, then the '`<`' character should be the very first character of the document. ***AVOID UNICODE FILES THAT USE THE BYTE-ORDER MARK.*** Such files cause output to be sent to the buffer early, and especially if do this on one of your pages, you might have some very messy side effects.
+
+After the start tag, put a blank line before you start your actual PHP code. 
+
+#### Mixed with Output
+In contrast with PHP code inline with your output, sometimes you're writing code that formats and writes the output itself. While this might logically sound like the place to '`echo`' your output code, **don't**. Another thing to avoid is doing this along-side your 'business logic'. *Always keep business logic and output logic separate*.
+
+Instead, use PHP short tags (to improve readability), and always put the PHP tag at the *end* of the current line. This is because we read from left to right, and as a result, we want the left side of the code to be as readable as possible. Also, having the actual PHP code on new lines helps the brain switch to the new language's context. Here's an example:
+
+    <ul><?
+    foreach (range(1, 10) as $i) { ?> 
+    	<li>Item <? echo $i ?></li><?
+    } ?> 
+    </ul>
+
+Some important details:
+
+Each ending tag has a space after it, so that the newline that comes after it is counted. The only bad thing this causes is an extra space after some lines of your output. But this allows you to cleanly format your output with clean and sane indentation.
+
+The PHP code is not indented any further than the output that *surrounds* it, and any output that's *inside* it is indented further. This keeps indentation clean for both the PHP and the resulting output. If you find yourself having to indent a lot before even sending *any* output, you're probably mixing 'business logic' with 'formatting logic'. Don't do that.
+
+Of course, nested indentation levels are fine when you have output at each level, or at all levels except the top ones, with none skipped. For example, if you have to indent 5 levels, you can have output at: the first; first and second; first, second, and third; first, second, third, and fourth; and first, second, third, fourth, and fifth levels.
+
+### HTML
+<sup>*To be written...*</sup>
