@@ -12,6 +12,8 @@ class Module extends Container
 {
 	private $method;
 
+	// Creating a module uses output buffering to capture the output of the
+	// included PHP file.
 	function __construct($module, $method = NULL)
 	{
 		if ($method != NULL) {
