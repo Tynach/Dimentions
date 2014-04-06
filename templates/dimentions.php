@@ -8,20 +8,29 @@
  * $this represents the current page.                                     *
  **************************************************************************/
 
-$navigation = new Module('numbers.php');
+$navigation = new Module('navigation.php');
+$copyright = new Module('copyright.php');
 
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><? echo $this->title ?> - Sample Dry Website</title>
+		<title><? echo $this->title ?> - Dimentions</title>
 		<meta charset="utf-8">
+
+		<link rel="stylesheet" type="text/css" href="styles/main.css">
 	</head>
 
 	<body>
-		<div id="header">
-			<?php echo $navigation->getContent(3) ?>
-		</div>
-		<?php echo $this->getContent(2) ?>
+		<header>
+			<h1>Dimentions</h1>
+			<? echo $navigation->getContent(3) ?>
+		</header>
+		<main>
+			<? echo $this->getContent(3) ?>
+		</main>
+		<footer>
+			<? echo $copyright->getContent(3) ?>
+		</footer>
 	</body>
 </html>

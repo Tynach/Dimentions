@@ -2,7 +2,7 @@
 
 include_once('forPages.php');
 
-$page = new Page('dimentions.htmt');
+$page = new Page('dimentions.php');
 $page->title = 'Hello, world!';
 ?>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in leo condimentum, rutrum neque sit amet, suscipit velit. Donec egestas vestibulum elit a interdum. Donec et tellus sed elit tincidunt posuere ut at lorem. Cras lacinia, odio et accumsan volutpat, dolor lorem semper mi, in consequat lorem diam non urna. Duis sagittis sed nunc id volutpat. Phasellus mauris ante, varius sit amet diam vel, dapibus convallis augue. Duis pretium pellentesque mi. Fusce vestibulum lorem id fermentum dignissim. Suspendisse at tortor quam. Praesent eu ullamcorper tellus. Suspendisse blandit dolor vehicula, venenatis orci id, interdum arcu. Ut non porta urna, non fermentum urna. Nulla quis mi gravida, varius augue eget, ultricies lorem. Proin sed sagittis nulla, et semper nunc. Praesent vitae nulla magna.
