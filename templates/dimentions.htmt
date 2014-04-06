@@ -9,8 +9,10 @@
  **************************************************************************/
 
 $navigation = new Module('navigation.php');
+$copyright = new Module('copyright.htmf');
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title><? echo $this->title ?> - Dimentions</title>
@@ -21,10 +23,14 @@ $navigation = new Module('navigation.php');
 
 	<body>
 		<header>
+			<h1>Dimentions</h1>
 			<? echo $navigation->getContent(3) ?>
 		</header>
-		<div id="content">
+		<main>
 			<? echo $this->getContent(3) ?>
-		</div>
+		</main>
+		<footer>
+			<? echo $copyright->getContent(3) ?>
+		</footer>
 	</body>
 </html>
