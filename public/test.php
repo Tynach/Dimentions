@@ -9,7 +9,7 @@
 
 include_once('forPages.php');
 
-$page = new Page('default.htmt');
+$page = new Page('default.php');
 $page->title = 'Hello, world!';
 
 ?>
