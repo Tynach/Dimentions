@@ -9,7 +9,8 @@ ob_end_clean();
 header("Content-type: text/css; charset: UTF-8");
 
 // Variables to use in the CSS
-$navWidth = '10rem';
+$navWidth = 10;
+$footerHeight = 1.1;
 
 ?>
 /*****************
@@ -22,17 +23,30 @@ $navWidth = '10rem';
 	line-height: 1em;
 }
 
+html {
+	height: 100%;
+}
+
 
 /***************
  * Body Styles *
  ***************/
 
 body {
+	min-height: 100%;
+	position:relative;
 	font-family: sans-serif;
 }
 
+main > *, footer > * {
+	padding-left: 0.5rem;
+	padding-right: 1rem;
+}
+
 p {
-	margin: 0.5em 0;
+	margin-top: 0.5rem;
+	margin-bottom: 1rem;
+	text-align: justify;
 }
 
 
@@ -41,28 +55,56 @@ p {
  *****************/
 
 header {
-	width: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
+	padding-top: 0.5rem;
 }
 
 
 /* Website 'Logo' Text */
 
 header > h1 {
-	height: 3rem;
-	line-height: 3rem;
-	vertical-align: middle;
-	background-color: white;
+	font-size: 3em;
+	padding: 0.5rem 0;
+	margin-left: 1rem;
 }
 
 
 /* Navigation Sidebar */
 
-header > nav {
+nav {
 	float: left;
-	width: <? echo $navWidth ?>;
+	width: <? echo $navWidth ?>rem;
+}
+
+nav ul {
+	list-style-type: none;
+}
+
+nav > ul {
+	padding: 0 0.5rem;
+}
+
+nav > ul li {
+	padding: 0.5rem 0;
+}
+
+nav > ul > li li {
+	font-weight: normal;
+	border-top: 1px solid #CCC;
+}
+
+nav > ul > li {
+	padding: 0.5rem;
+	padding-bottom: 0;
+	font-weight: bold;
+	border-top: 1px solid black;
+}
+
+nav > ul > li li:first-child {
+	margin-top: 0.5rem;
+}
+
+nav > ul > li:first-child {
+	border: 0;
 }
 
 
@@ -71,8 +113,9 @@ header > nav {
  ***********************/
 
 main {
-	margin-top: 3rem;
-	margin-left: <? echo $navWidth ?>;
+	margin-left: <? echo $navWidth ?>rem;
+	padding-bottom: <? echo $footerHeight ?>rem;
+	max-width: 75rem;
 }
 
 
@@ -81,7 +124,15 @@ main {
  *****************/
 
 footer {
+	font-size: 0.8em;
 	position: absolute;
 	bottom: 0;
-	left: <? echo $navWidth ?>;
+	left: <? echo $navWidth ?>rem;
+}
+
+footer p {
+	height: <? echo $footerHeight ?>rem;
+	line-height: <? echo $footerHeight ?>rem;
+	vertical-align: middle;
+	margin: 0;
 }
