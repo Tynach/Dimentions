@@ -10,7 +10,8 @@
 
 $navigation = new Module('numbers.php');
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title><? echo $this->title ?> - Sample Dry Website</title>

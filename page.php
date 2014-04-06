@@ -20,12 +20,16 @@ class Page extends Container
 	public $title;
 	private $templateFile;
 
+	// Start output buffering once page is created.
 	function __construct($template)
 	{
 		$this->templateFile = sprintf('%s/%s', Location::TEMPLATES(), $template);
 		ob_start();
 	}
 
+	// When page is done processing, end output buffering and load the
+	// template file, which will (or should) put the contents of the page in
+	// the appropriate place.
 	function __destruct()
 	{
 		$this->processBuffer();
