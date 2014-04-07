@@ -9,6 +9,7 @@ ob_end_clean();
 header("Content-type: text/css; charset: UTF-8");
 
 // Variables to use in the CSS
+$logoHeight = 3;
 $navWidth = 10;
 $footerHeight = 1.1;
 
@@ -33,20 +34,10 @@ html {
  ***************/
 
 body {
+	max-width: 75rem;
 	min-height: 100%;
 	position:relative;
 	font-family: sans-serif;
-}
-
-main > *, footer > * {
-	padding-left: 0.5rem;
-	padding-right: 1rem;
-}
-
-p {
-	margin-top: 0.5rem;
-	margin-bottom: 1rem;
-	text-align: justify;
 }
 
 
@@ -54,57 +45,57 @@ p {
  * Header Styles *
  *****************/
 
-header {
-	padding-top: 0.5rem;
-}
-
-
 /* Website 'Logo' Text */
 
+header {
+	margin: 0 0.5rem;
+}
+
 header > h1 {
-	font-size: 3em;
-	padding: 0.5rem 0;
-	margin-left: 1rem;
+	height: <? echo $logoHeight ?>rem;
+	display: table-cell;
+	vertical-align: bottom;
+	font-size: <? echo $logoHeight - 0.5 ?>rem;
 }
 
 
 /* Navigation Sidebar */
 
 nav {
-	float: left;
+	position: absolute;
+	top: <? echo $logoHeight ?>rem;
+	left: 0;
 	width: <? echo $navWidth ?>rem;
+	overflow: auto;
 }
 
 nav ul {
 	list-style-type: none;
 }
 
-nav > ul {
-	padding: 0 0.5rem;
-}
-
-nav > ul li {
-	padding: 0.5rem 0;
-}
-
-nav > ul > li li {
-	font-weight: normal;
-	border-top: 1px solid #CCC;
+nav li {
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
 }
 
 nav > ul > li {
-	padding: 0.5rem;
-	padding-bottom: 0;
+	padding-top: 0.5rem;
 	font-weight: bold;
-	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+nav > ul > li li {
+	padding: 0.5rem 0;
+	font-weight: normal;
+	border-top: 1px solid #CCC;
 }
 
 nav > ul > li li:first-child {
 	margin-top: 0.5rem;
 }
 
-nav > ul > li:first-child {
-	border: 0;
+nav > ul > li:last-child {
+	padding-bottom: 0.5rem;
 }
 
 
@@ -115,7 +106,11 @@ nav > ul > li:first-child {
 main {
 	margin-left: <? echo $navWidth ?>rem;
 	padding-bottom: <? echo $footerHeight ?>rem;
-	max-width: 75rem;
+}
+
+main p {
+	margin: 0.5rem;
+	text-align: justify;
 }
 
 
@@ -134,5 +129,24 @@ footer p {
 	height: <? echo $footerHeight ?>rem;
 	line-height: <? echo $footerHeight ?>rem;
 	vertical-align: middle;
-	margin: 0;
+	margin: 0 0.5rem;
+}
+
+
+/**************************
+ * Small Screen Rendering *
+ **************************/
+
+@media screen and (max-width: 30rem) {
+	nav {
+		left: -<? echo $navWidth ?>rem;
+	}
+	
+	main {
+		margin-left: 0;
+	}
+	
+	footer {
+		left: 0;
+	}
 }
