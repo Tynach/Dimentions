@@ -1,11 +1,6 @@
 var nav;
 var orig;
 
-function navScroll(event)
-{
-	event.stopPropagation();
-}
-
 function onScroll()
 {
 	if (window.pageYOffset > orig) {
@@ -31,8 +26,6 @@ function onLoad()
 
 	window.onscroll = onScroll;
 	window.onresize = onResize;
-	
-	nav.onscroll = navScroll;
 }
 
 window.onload = onLoad;

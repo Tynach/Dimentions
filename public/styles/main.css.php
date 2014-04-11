@@ -1,16 +1,26 @@
 <?php
 
-// Don't tell people viewing the source from a browser that we're using PHP.
-ob_start() ?>
-/* Ensure this PHP file parses as CSS in editors: <style> /**/<?
-ob_end_clean();
+/***********************************************************************
+ * This file defines the main, global stylesheet for the website. It's *
+ * designed most specifically for the 'dimentions.php' template.       *
+ ***********************************************************************/
+
+ob_start()      // Most text editors will parse this file as HTML, and it screws
+?><style><?     // up the syntax highlighting. Instead, lets use a '<style>' tag
+ob_end_clean(); // to tell at least the editors that support CSS syntax
+                // highlighting inside HTML that they should highlight things
+                // from here on as CSS.
+
+                // We use 'output buffering' so that the tag is not actually
+                // sent to the browser. We of course want to ignore the contents
+                // of the buffer, so we use ob_end_clean().
 
 // Tell browsers this is a CSS document
 header("Content-type: text/css; charset: UTF-8");
 
 // Variables to use in the CSS
 $logoHeight = 3;
-$navWidth = 10;
+$navWidth = 11;
 $footerHeight = 1.1;
 
 ?>
@@ -61,7 +71,7 @@ header > h1 {
 
 /* Navigation Sidebar */
 
-nav {
+nav#primary {
 	position: absolute;
 	top: <? echo $logoHeight ?>rem;
 	left: 0;
@@ -69,33 +79,27 @@ nav {
 	overflow: auto;
 }
 
-nav ul {
+nav#primary * {
+	line-height: 2em;
+}
+
+nav#primary ul {
 	list-style-type: none;
 }
 
-nav li {
+nav#primary li {
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
 }
 
-nav > ul > li {
-	padding-top: 0.5rem;
+nav#primary > ul > li {
 	font-weight: bold;
 	border-bottom: 1px solid black;
 }
 
-nav > ul > li li {
-	padding: 0.5rem 0;
+nav#primary > ul > li li {
 	font-weight: normal;
 	border-top: 1px solid #CCC;
-}
-
-nav > ul > li li:first-child {
-	margin-top: 0.5rem;
-}
-
-nav > ul > li:last-child {
-	padding-bottom: 0.5rem;
 }
 
 
@@ -137,15 +141,16 @@ footer p {
  * Small Screen Rendering *
  **************************/
 
-@media screen and (max-width: 30rem) {
-	nav {
+@media screen and (max-width: <? echo $navWidth * 3 ?>rem)
+{
+	nav#primary {
 		left: -<? echo $navWidth ?>rem;
 	}
-	
+
 	main {
 		margin-left: 0;
 	}
-	
+
 	footer {
 		left: 0;
 	}

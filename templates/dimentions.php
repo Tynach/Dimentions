@@ -13,26 +13,21 @@ $copyright = new Module('copyright.php');
 
 ?>
 <!DOCTYPE html>
-<html>
-	<head>
-		<title><? echo $this->title ?> - Dimentions</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<link rel="stylesheet" type="text/css" href="styles/main.css">
-		<script src="scripts/nav.js"></script>
-	</head>
+<title><? echo $this->title ?> - Dimentions</title>
 
-	<body>
-		<header>
-			<h1>Dimentions</h1>
-			<? echo $navigation->getContent(3) ?>
-		</header>
-		<main>
-			<? echo $this->getContent(3) ?>
-		</main>
-		<footer>
-			<? echo $copyright->getContent(3) ?>
-		</footer>
-	</body>
-</html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="styles/main.css">
+<script src="scripts/nav.js"></script>
+
+<header>
+	<h1>Dimentions</h1>
+	<? echo $navigation->getContent(1) ?>
+</header>
+<main>
+	<? echo $this->getContent(1) ?>
+</main>
+<footer>
+	<? echo $copyright->getContent(1) ?>
+</footer>

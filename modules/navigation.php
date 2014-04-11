@@ -1,39 +1,32 @@
 <?php
 
-$categories = array(
-	'Roleplays' => array(
-		'Own',
-		'Moderate',
-		'Joined',
-		'Following'
-	),
-	'Characters' => array(
-		'Own',
-		'Permitted To Use'
-	),
-	'Universes' => array(
-		'Own',
-		'Permitted To Use'
-	),
-	'Clubs' => array(
-		'Own',
-		'Moderate',
-		'Joined'
-	)
+/*************************************************************
+ * This file generates the navigation links for the website. *
+ *************************************************************/
+
+$items = array(
+	'Universes',
+	'Characters',
+	'Roleplays'
+);
+
+$actions = array(
+	'My' => $items,
+	'Create' => $items,
+	'Find' => $items
 );
 
 ?>
-<nav>
+<nav id="primary">
 	<ul><?
-	foreach ($categories as $category => $items) { ?> 
-		<li><? echo $category; ?> 
+	foreach ($actions as $category => $subCategories) { ?> 
+		<li><? echo $category ?> 
 			<ul><?
-			foreach ($items as $item) { ?> 
-				<li><? echo $item ?></li><?
+			foreach ($subCategories as $item) { ?> 
+				<li><? echo $item ?><?
 			} ?> 
-			</ul>
-		</li><?
+			</ul><?
 	} ?> 
-		<li>Settings</li>
+		<li>Settings
 	</ul>
 </nav>
