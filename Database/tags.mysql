@@ -1,0 +1,42 @@
+CREATE TABLE tags (
+	tag_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	tag VARCHAR(20) NOT NULL,
+
+	PRIMARY KEY (tag_id),
+	UNIQUE INDEX (tag)
+) ENGINE = InnoDB;
+
+CREATE TABLE implied_tags (
+	tag_id INT UNSIGNED NOT NULL,
+	implied_id INT UNSIGNED NOT NULL,
+
+	PRIMARY KEY (tag_id, implied_id),
+	FOREIGN KEY (tag_id) REFERENCES tags (tag_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (implied_id) REFERENCES tags (tag_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE tag_aliases (
+	alias VARCHAR(20) NOT NULL,
+	tag_id INT UNSIGNED NOT NULL,
+
+	UNIQUE INDEX (alias),
+	FOREIGN KEY (tag_id) REFERENCES tags (tag_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE tag_ratings ( #Some tags should not be mixed with some ratings.
+	tag_id INT UNSIGNED NOT NULL,
+	rating_id INT UNSIGNED NOT NULL,
+
+	PRIMARY KEY (tag_id),
+	FOREIGN KEY (tag_id) REFERENCES tags (tag_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (rating_id) REFERENCES ratings (rating_id)
+	#^If there are tags using the rating, don't let anyone delete it.
+) ENGINE = InnoDB;
