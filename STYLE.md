@@ -58,7 +58,9 @@ In fact, in general, things you'll call or interact with directly (such as varia
 Things you interact with only indirectly in order to use objects/variables/values they contain (such as classes, abstract classes, interfaces, namespaces, or global objects/structs/whatever that just exist to contain other things you *do* directly interact with) should start with an uppercase letter.
 
 ### In Filenames
-In files, the first letter should **always** be lowercase, and from there, camelCase'd.
+In files, the first letter should **always** be lowercase, and from there, the name is camelCase'd.
+
+Folders should **always** start with an uppercase letter, and from there, the name is CamelCase'd.
 
 Commenting Your Code
 --------------------

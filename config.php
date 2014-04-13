@@ -15,7 +15,7 @@
 
 abstract class Settings
 {
-	protected static $values = array();
+	private static $values;
 
 	public static function __callstatic($name, $arguments)
 	{
@@ -27,12 +27,14 @@ abstract class Settings
 // to the project's root directory.
 class Location extends Settings
 {
-	protected static $values = array(
+	$values = array(
 		'ROOT' => __DIR__,          // Path to project's root directory.
-		'PUBLIC' => 'public',       // Path to public-facing files.
-		'TEMPLATES' => 'templates', // Path to template files.
-		'MODULES' => 'modules'      // Path to module files.
+		'PUBLIC' => 'Public',       // Path to public-facing files.
+		'TEMPLATES' => 'Templates', // Path to template files.
+		'MODULES' => 'Modules'      // Path to module files.
 	);
+	
+	public static 
 
 	public static function __callstatic($name, $arguments)
 	{
@@ -47,7 +49,7 @@ class Location extends Settings
 // This class stores general settings.
 class General extends Settings
 {
-	protected static $values = array(
+	$values = array(
 		'INDENT' => "\t", // The indentation character (spaces or tab).
 	);
 }
