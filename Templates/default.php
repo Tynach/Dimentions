@@ -12,16 +12,16 @@ $navigation = new Module('numbers.php');
 
 ?>
 <!DOCTYPE html>
-<html>
-	<head>
-		<title><? echo $this->title ?> - Sample Dry Website</title>
-		<meta charset="utf-8">
-	</head>
 
-	<body>
-		<div id="header">
-			<?php echo $navigation->getContent(3) ?>
-		</div>
-		<?php echo $this->getContent(2) ?>
-	</body>
-</html>
+<title><? echo $this->title ?> - Sample Dry Website</title>
+<meta charset="utf-8">
+
+<header>
+	<nav>
+		<?php echo $navigation->getContent(2) ?>
+	</nav>
+</header>
+
+<main>
+	<?php echo $this->getContent(1) ?>
+</main>
