@@ -11,9 +11,17 @@
  * $content is generally said string value.                                   *
  ******************************************************************************/
 
+requireOnceRoot('general.php');
+
 abstract class Container
 {
-	private $content = '';
+	private $content;
+
+	// Create initial contents of the container upon creation.
+	public function __construct($string = '')
+	{
+		$this->content = $string;
+	}
 
 	// Return an indented copy of the container's contents.
 	private function indent($indent)
@@ -41,7 +49,7 @@ abstract class Container
 	// Get the contents of the container, optionally indenting.
 	public function getContent($indent = 0)
 	{
-		if ($indent == 0) {
+		if ($indent === 0) {
 			return $this->content;
 		} else {
 			return $this->indent($indent);

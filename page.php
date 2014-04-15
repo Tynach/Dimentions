@@ -13,7 +13,13 @@
  * it's easiest just to include that one file rather than several.            *
  ******************************************************************************/
 
-include_once('module.php');
+/******************************************************************************
+ * WARNING: For some reason, we must get the path for the template ahead of   *
+ * time with templatePath() instead of calling requireTemplate(). Otherwise,  *
+ * the template file believes it is no longer able to use $this for the page. *
+ ******************************************************************************/
+
+requireOnceRoot('module.php');
 
 class Page extends Container
 {
@@ -23,7 +29,9 @@ class Page extends Container
 	// Start output buffering once page is created.
 	function __construct($template)
 	{
-		$this->templateFile = sprintf('%s/%s', Location::TEMPLATES(), $template);
+		parent::__construct();
+
+		$this->templateFile = templatePath($template);
 		ob_start();
 	}
 
@@ -33,6 +41,6 @@ class Page extends Container
 	function __destruct()
 	{
 		$this->processBuffer();
-		include($this->templateFile);
+		require($this->templateFile);
 	}
 }

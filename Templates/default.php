@@ -9,6 +9,7 @@
  **************************************************************************/
 
 $navigation = new Module('numbers.php');
+$except = new Module('except.php');
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +20,17 @@ $navigation = new Module('numbers.php');
 <header>
 	<nav>
 		<?php echo $navigation->getContent(2) ?>
-	</nav>
+	</nav><?
+
+global $exceptions;
+if (!empty($exceptions)) { ?> 
+
+	<div id="exceptions">
+		<? echo $except->getContent(2) ?>
+	</div><?
+}
+
+?> 
 </header>
 
 <main>
