@@ -5,5 +5,5 @@
  * the browser window.                                                        *
  ******************************************************************************/
 
-include_once('necessary.php');
-include_once(sprintf('%s/%s', Location::ROOT(), 'page.php'));
+require_once('necessary.php');
+requireOnceRoot('page.php');
