@@ -7,38 +7,46 @@ One of the main reasons I built this framework was so that I could control how t
 ### Curly Brace Location
 For the most part, we'll be using Linux conventions. Things that can contain other things of the same type (for, while, if, and so forth statements) will put the beginning brace on the same line as the declaration or condition. For example:
 
-    if ($blah) {
-    	doCode();
-    }
+```PHP
+if ($blah) {
+	doCode();
+}
+```
 
 However: if it cannot contain more of the same thing, is an item at the top level of the document (not nested in anything else), or is of such extreme importance that you need to make it absolutely clear that the contained block of code is separate from everything else around it, you should put the beginning brace on the next line, with no additional indentation (with the code within the block indented, but not the brace). Example:
 
-    function blah()
-    {
-    	moreCode();
-    }
+```PHP
+function blah()
+{
+	moreCode();
+}
+```
 
 The ending curly brace should always go on its own line, except in the case of ifelse and else statements, or any other series of blocks that belong together as a single logical unit. Final example:
 
-    if ($blah) {
-    	stuff();
-    } elseif ($blorg) {
-    	moreStuff();
-    } else {
-    	bleegle();
-    }
+```PHP
+if ($blah) {
+	stuff();
+} elseif ($blorg) {
+	moreStuff();
+} else {
+	bleegle();
+}
+```
 
 ### Indentation
 Indentation will be done with tabs. If you have a scenario where you want to line things up nicely within a single statement but across multiple lines, like:
 
-    function blorg()
-    {
-    	while ($var1 == 'blah' ||
-    	       $var2 != 'blorg' ||
-    	       $var3 > 5) {
-    		otherCode();
-    	}
-    }
+```PHP
+function blorg()
+{
+	while ($var1 == 'blah' ||
+	       $var2 != 'blorg' ||
+	       $var3 > 5) {
+		otherCode();
+	}
+}
+```
 
 Then you use tabs up to the 'main' indentation level for that statement (in the above, the indentation before the word 'while'), and then you use spaces to fill the rest in.
 
@@ -69,47 +77,59 @@ In all cases, comments should **not** go over the 80 column mark in your editor.
 #### C-Style Comments
 Every file should start with a large, stylized, C-style comment that describes the nature of the code within. The comment will look something like this:
 
-    /******************************************************************************
-     * Hello, world! This is a big comment, isn't it? Wow, look at all those      *
-     * asterisks around it, too! Aren't they pretty?                              *
-     *                                                                            *
-     * I also really like how it doesn't go over 80 characters wide. It sure is a *
-     * killer when you're trying to read code in a command line, and you can't    *
-     * even read the comment properly! Pretty darn annoy'n, if ya ask me.         *
-     ******************************************************************************/
+```PHP
+/******************************************************************************
+ * Hello, world! This is a big comment, isn't it? Wow, look at all those      *
+ * asterisks around it, too! Aren't they pretty?                              *
+ *                                                                            *
+ * I also really like how it doesn't go over 80 characters wide. It sure is a *
+ * killer when you're trying to read code in a command line, and you can't    *
+ * even read the comment properly! Pretty darn annoy'n, if ya ask me.         *
+ ******************************************************************************/
+```
 
 Essentially, you start typing your comment. Assuming you are typing from the beginning of the line, such as with:
 
-    /*
-    The comment text that goes on and on and on and on and on and on and on and on and on and on and on...
-    */
+```PHP
+/*
+The comment text that goes on and on and on and on and on and on and on and on and on and on and on...
+*/
+```
 
 The slash at the beginning and end take up one space of the width each, as does each asterisk, and the minimum of 1 space padding on either side of the contained text. In total, you need to leave space for at least 6 characters after the end of the text before the 80th column. The above comment would thus wrap to:
 
-    /*
-    The comment text that goes on and on and on and on and on and on and on
-    and on and on and on and on...
-    */
+```PHP
+/*
+The comment text that goes on and on and on and on and on and on and on
+and on and on and on and on...
+*/
+```
 
 And then the spaces and asterisks are filled in:
 
-    /******************************************************************************
-     * The comment text that goes on and on and on and on and on and on and on    *
-     * and on and on and on and on...                                             *
-     ******************************************************************************/
+```PHP
+/******************************************************************************
+ * The comment text that goes on and on and on and on and on and on and on    *
+ * and on and on and on and on...                                             *
+ ******************************************************************************/
+```
 
 If you ever find that wrapping the text to fit within both 80 columns *and* the 'frame' of asterisks around it causes the whole thing to have extra spaces at the end of every line (the longest line in the comment having 2 or more spaces between it and the `*` at the 79'th column, like in the comment above), you can shrink it down so that the longest line has only 1 space there:
 
-    /***************************************************************************
-     * The comment text that goes on and on and on and on and on and on and on *
-     * and on and on and on and on...                                          *
-     ***************************************************************************/
+```PHP
+/***************************************************************************
+ * The comment text that goes on and on and on and on and on and on and on *
+ * and on and on and on and on...                                          *
+ ***************************************************************************/
+```
 
 #### Single-Line Comments
 Single-line comments look like this:
 
-    // Hello! This is a single line comment! I'm just going to make this a biiit
-    // longer than it really needs to be, just to help an example I mentioned above.
+```PHP
+// Hello! This is a single line comment! I'm just going to make this a biiit
+// longer than it really needs to be, just to help an example I mentioned above.
+```
 
 Single-line comments should also go above or at the end of anything you feel needs explaining. For example, if you have pre-set the values of an array, you might put each value on a new line with a single-line comment at the end of it to explain the value.
 
@@ -117,17 +137,19 @@ In general, single-line comments go *above* the thing you're explaining when it'
 
 Single-line comments should generally go *at the end* of any line that's already inside a group or series of related things. These should generally be much shorter, if possible. Otherwise you start doing this:
 
-    if (1) {
-    	while (2) {
-    		foreach ($x as $y) {
-    			for ($i = 0; i < 1000000; i--) {
-    				function() {
-    					printf("Hello, world!\n"); // This is
-    				}	                           // just ridi-
-    			}		                           // culous!
-    		}
-    	}
-    }
+```PHP
+if (1) {
+	while (2) {
+		foreach ($x as $y) {
+			for ($i = 0; i < 1000000; i--) {
+				function() {
+					printf("Hello, world!\n"); // This is
+				}	                           // just ridi-
+			}		                           // culous!
+		}
+	}
+}
+```
 
 Note: This is when the fact that I use 8 spaces per tab really comes into play. With 4 space tabs, that code would be well within the bounds. But with 8, it just barely makes it.
 
@@ -163,11 +185,13 @@ When using inline PHP, use short PHP tags. The word 'php' at the end lowers read
 
 In general, having as little inline code as possible will improve readability. Here's an example of PHP code inline with HTML:
 
-    <!-- This is wrong: -->
-    <title><?php echo($title); ?> - My Website</title>
-    
-    <!-- This is right: -->
-    <title><? echo $title ?> - My Website</title>
+```HTML+PHP
+<!-- This is wrong: -->
+<title><?php echo($title); ?> - My Website</title>
+
+<!-- This is right: -->
+<title><? echo $title ?> - My Website</title>
+```
 
 I'm not sure if I like the shorter '`<?= $title ?>`' form or not; seeing '`?=`' makes me automatically think it's asking a question, or assigning a value; looks almost like a contender for replacing '`==`'. Using '`echo`' clearly indicates what the code does, so I personally prefer it.
 
@@ -181,11 +205,13 @@ In contrast with PHP code inline with your output, sometimes you're writing code
 
 Instead, use PHP short tags (to improve readability), and always put the PHP tag at the *end* of the current line. This is because we read from left to right, and as a result, we want the left side of the code to be as readable as possible. Also, having the actual PHP code on new lines helps the brain switch to the new language's context. Here's an example:
 
-    <ul><?
-    foreach (range(1, 10) as $i) { ?> 
-    	<li>Item <? echo $i ?></li><?
-    } ?> 
-    </ul>
+```HTML+PHP
+<ul><?
+foreach (range(1, 10) as $i) { ?> 
+	<li>Item <? echo $i ?></li><?
+} ?> 
+</ul>
+```
 
 Some important details:
 
