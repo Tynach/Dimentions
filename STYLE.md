@@ -1,9 +1,7 @@
-Coding Style Guidelines
-=======================
+# Coding Style Guidelines
 This is the first project I'm making that will enforce specific style guidelines, and because of that, even I might be sloppy. Feel free to correct anywhere that I forget to stick to my own style!
 
-Curly Braces and Indentation
-----------------------------
+## Curly Braces and Indentation
 One of the main reasons I built this framework was so that I could control how the whitespace was managed in the output HTML. I have no idea why, but I'm incredibly picky about whitespace use; this extends into the behind-the-scenes code as well.
 
 ### Curly Brace Location
@@ -46,8 +44,7 @@ Then you use tabs up to the 'main' indentation level for that statement (in the 
 
 You can set your editor to use however many spaces you want for your displayed tab length, but keep in mind that I will consistently use 8 spaces per tab in my editors.
 
-Naming
-------
+## Naming
 Most things should be in CamelCase. However, constants (even fake ones like in config.php) should be in ALL_CAPS with underscores to separate words.
 
 ### In Code
@@ -62,16 +59,15 @@ In files, the first letter should **always** be lowercase, and from there, the n
 
 Folders should **always** start with an uppercase letter, and from there, the name is CamelCase'd.
 
-Commenting Your Code
---------------------
+## Commenting Your Code
 I'm going to attempt to start documenting what code does, how, and why, via comments. Eventually a wiki will be started as well, but for now I just need to make sure that people reading the code understand what it's doing. To that end, I'm going to set some commenting guidelines.
 
-In all cases, comments should **not** go over the 80 column mark in your editor. For reference, that previous sentence I wrote is exactly 80 characters wide when viewing the raw Markdown (including the \*s used to put strong emphasis on 'not' and the period at the end). It doesn't matter if a comment should be on one line, when I say a 'one-line comment' that comment might go more than one line anyway. I'll demonstrate this in an example further down.
+In all cases, comments should **not** go over the 80 column mark in your editor. For reference, that previous sentence I wrote is exactly 80 characters wide when viewing the raw Markdown (including the \*s used to put strong emphasis on 'not' and the period at the end). It doesn't matter if a comment should be on one line, when I say a 'single-line comment' that comment might go more than one line anyway. I'll demonstrate this in an example further down.
 
-### Logic Files
-Logic files are files that contain mostly, or even only, PHP code. No HTML, no CSS, nothing but the 'business logic' of the website.
+### Comment Styles
 
-Every logic file should start with a large, stylized, C-style comment that describes the nature of the code within. The comment will look something like this:
+#### C-Style Comments
+Every file should start with a large, stylized, C-style comment that describes the nature of the code within. The comment will look something like this:
 
     /******************************************************************************
      * Hello, world! This is a big comment, isn't it? Wow, look at all those      *
@@ -82,18 +78,40 @@ Every logic file should start with a large, stylized, C-style comment that descr
      * even read the comment properly! Pretty darn annoy'n, if ya ask me.         *
      ******************************************************************************/
 
-If you ever find that wrapping the text to fit within both 80 columns *and* the 'frame' of asterisks around it (6 characters less; so you have wrap the text at 74 columns) causes the whole thing to have extra spaces at the end of every line (like, the longest line in the comment has 2 or more spaces between it and the \* at the 79'th column), you can shrink it down so that the longest line has only 1 space there.
+Essentially, you start typing your comment. Assuming you are typing from the beginning of the line, such as with:
 
-In most cases, you *should* either have one class per file, or one *group* of classes per file. In the former, you should describe what the class represents in the large C-style comment.
+    /*
+    The comment text that goes on and on and on and on and on and on and on and on and on and on and on...
+    */
 
-In the latter, the large C-style comment should describe, in general, what the group of classes represent and the nature of their relationship with each other. Often, this would be one abstract class or interface, which you later extend or implement in multiple similar classes. You'd describe in your large comment the abstract concept that they all represent as a whole.
+The slash at the beginning and end take up one space of the width each, as does each asterisk, and the minimum of 1 space padding on either side of the contained text. In total, you need to leave space for at least 6 characters after the end of the text before the 80th column. The above comment would thus wrap to:
 
-If you have more than one class, you will also have a small one-line comment above each class that explains its specific role and either how it differs from the others, compliments the others, or is used by the others. Single-line comments look like this:
+    /*
+    The comment text that goes on and on and on and on and on and on and on
+    and on and on and on and on...
+    */
+
+And then the spaces and asterisks are filled in:
+
+    /******************************************************************************
+     * The comment text that goes on and on and on and on and on and on and on    *
+     * and on and on and on and on...                                             *
+     ******************************************************************************/
+
+If you ever find that wrapping the text to fit within both 80 columns *and* the 'frame' of asterisks around it causes the whole thing to have extra spaces at the end of every line (the longest line in the comment having 2 or more spaces between it and the `*` at the 79'th column, like in the comment above), you can shrink it down so that the longest line has only 1 space there:
+
+    /***************************************************************************
+     * The comment text that goes on and on and on and on and on and on and on *
+     * and on and on and on and on...                                          *
+     ***************************************************************************/
+
+#### Single-Line Comments
+Single-line comments look like this:
 
     // Hello! This is a single line comment! I'm just going to make this a biiit
     // longer than it really needs to be, just to help an example I mentioned above.
 
-One-line comments should also go above or at the end of anything you feel needs explaining. For example, if you have pre-set the values of an array, you might put each value on a new line with a single-line comment at the end of it.
+Single-line comments should also go above or at the end of anything you feel needs explaining. For example, if you have pre-set the values of an array, you might put each value on a new line with a single-line comment at the end of it to explain the value.
 
 In general, single-line comments go *above* the thing you're explaining when it's a group or series of things that are all related, such as a group of variable declarations or the start of a block.
 
@@ -111,17 +129,27 @@ Single-line comments should generally go *at the end* of any line that's already
     	}
     }
 
-Note: This is when the fact that I use 8 spaces per tab really comes into play. With 4 space tabs, that code would be well within the bounds. But with 8, it just barely makes it. It's also worth noting that tabs should be used up to the point where the most indented line is indented, and *then* spaces should be used. View the source of this document and look at the above example.
+Note: This is when the fact that I use 8 spaces per tab really comes into play. With 4 space tabs, that code would be well within the bounds. But with 8, it just barely makes it.
 
-Also note: One-line comments have one space between the '`//`' and the text. In fact, C-style comments also have one space padding the content from either delimiter.
+It's also worth noting that tabs should be used up to the point where the most indented line is indented, and *then* spaces should be used. View the source of this document and look at the above example. There are ways to indent like this going from an unindented line to an indented line. They are somewhat messy, however, and the situation doesn't usually make sense; usually you would put your comment above the indented block instead.
+
+Also, note that single-line comments have one space between the '`//`' and the text of the comment.
+
+### Logic Files
+Logic files are files that contain mostly, or even only, PHP code. No HTML, no CSS, nothing but the 'business logic' of the website.
+
+In most cases, you *should* either have one class per file, or one *group* of classes per file. In the former, you should describe what the class represents in the large C-style comment.
+
+In the latter, the large C-style comment should describe, in general, what the group of classes represent and the nature of their relationship with each other. Often, this would be one abstract class or interface, which you later extend or implement in multiple similar classes. You'd describe in your large comment the abstract concept that they all represent as a whole.
+
+If you have more than one class, you will also have a small single-line comment above each class that explains its specific role and either how it differs from the others, compliments the others, or is used by the others.
 
 ### Include Files
 For the purposes of this section of this document, 'include files' are PHP files that **only** have include() or include_once() statements. These are used to more dynamically control what files are necessary for different types of pages. For example, some pages don't need to use the database, while others do. Some don't even need to handle templating (they just handle API related things like logging in/out, or perhaps they just redirect to somewhere else).
 
-Include files will have a more-or-less one-line C-style block comment at the top, describing what sorts of pages should include/include_once the file. After that, use one-line comments above any include statement that has special instructions (for example, of the server admin needs to change one of the values to fit their environment).
+Include files will have a C-style block comment at the top, describing what sorts of pages should include/include_once the file. After that, use single-line comments above any include statement that has special instructions (for example, of the server admin needs to change one of the values to fit their environment), and above any group of related includes.
 
-Tags
-----
+## Tags
 
 ### PHP
 The placement of PHP's start and end tags depends on how you are using the PHP. The idea is that how you use it should convey a consistent meaning across similar instances.
@@ -167,5 +195,9 @@ The PHP code is not indented any further than the output that *surrounds* it, an
 
 Of course, nested indentation levels are fine when you have output at each level, or at all levels except the top ones, with none skipped. For example, if you have to indent 5 levels, you can have output at: the first; first and second; first, second, and third; first, second, third, and fourth; and first, second, third, fourth, and fifth levels.
 
-### HTML
-<sup>*To be written...*</sup>
+## HTML, Javascript, CSS...
+Browser support is one of the lowest priorities. The absolute highest priority is that we need to stick with what is a defined standard. This is so that, in the future, all browsers (that are up to date) will eventually support it anyway. Browser-specific things are to be avoided wherever possible (unless they're things like -moz- or -webkit- in CSS, and are needed to implement something that is standardized in a specific browser).
+
+Minimalism is also extremely important. Keeping the amount of code down to a minimum, while still doing what we want, is key. As a matter of principle, anything sent to the client should be used by said client, with few exceptions. Such exceptions might be things like CSS rules that don't deal with a particular page (because the relevant element doesn't exist). However, the number of unused bits of code should be kept as absolutely low as possible, and should **never** be the contents of an entire file.
+
+The goal is for maximum readability. Ideally, we'd have code readable without even syntax highlighting (for both generated and static code), but at at least have readable code when only syntax highlighting is available.
