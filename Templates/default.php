@@ -19,7 +19,7 @@ $except = new Module('except.php');
 
 <header>
 	<nav>
-		<?php echo $navigation->getContent(2) ?>
+		<? echo $navigation->getContent(2) ?>
 	</nav><?
 
 global $exceptions;
