@@ -11,12 +11,9 @@
  * assumes that the framework itself is properly set up/working.            *
  ****************************************************************************/
 
-$exceptions = Array();
-
 function handleException($exception)
 {
-	global $exceptions;
-	$exceptions[] = $exception;
+	General::insertSetting('ERROR', $exception);
 }
 
 set_exception_handler('handleException');

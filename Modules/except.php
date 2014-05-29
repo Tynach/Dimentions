@@ -6,17 +6,11 @@
  * list.                                                                   *
  ***************************************************************************/
 
-?>
-<p>Exceptions:
-<ul><?
-global $exceptions;
+$problem = General::ERROR();
 
-foreach ($exceptions as $exception) {
-	$lines = explode(PHP_EOL, $exception); ?> 
-	<li><?
-	foreach ($lines as $line) { ?> 
-		<? echo $line ?><br><?
-	} ?> 
-	</li><?
-} ?> 
-</ul>
+if ($problem === false) {
+	return;
+}
+
+?>
+<p><? echo $problem->getmessage();

@@ -11,7 +11,7 @@ require_once('settings.php');
 
 class Location extends Settings
 {
-	private static $values = array(
+	protected static $values = array(
 		'ROOT' => __DIR__,          // Path to project's root directory.
 		'PUBLIC_HTML' => 'Public',  // Path to public-facing files.
 		'TEMPLATES' => 'Templates', // Path to template files.
