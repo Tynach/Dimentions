@@ -9,7 +9,10 @@
  **************************************************************************/
 
 $navigation = new Module('numbers.php');
-$except = new Module('except.php');
+
+if (General::ERROR() !== false) {
+	$error = new Module('except.php');
+}
 
 ?>
 <!DOCTYPE html>
@@ -22,15 +25,15 @@ $except = new Module('except.php');
 		<? echo $navigation->getContent(2) ?>
 	</nav><?
 
-global $exceptions;
-if (!empty($exceptions)) { ?> 
+if (isset($error)): ?>
+
 
 	<div id="exceptions">
-		<? echo $except->getContent(2) ?>
+		<? echo $error->getContent(2) ?>
 	</div><?
-}
 
-?> 
+endif ?>
+
 </header>
 
 <main>

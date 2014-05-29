@@ -15,8 +15,25 @@
 
 abstract class Settings
 {
+	// Returns false if the setting $value refers to does not exist.
 	public static function __callstatic($name, $arguments)
 	{
+		if (!isset(static::$values[$name])) {
+			return false;
+		}
+
 		return static::$values[$name];
+	}
+	
+	public static function insertSetting($name, $value)
+	{
+		// No mercy. If someone tries to override an existing setting,
+		// throw an exception and cause their page to basically not work
+		// anymore.
+		if (isset(static::$values[$name])) {
+			throw exception("The '$name' setting already exists.");
+		}
+
+		static::$values[$name] = $value;
 	}
 }

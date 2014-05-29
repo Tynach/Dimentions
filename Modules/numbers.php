@@ -6,7 +6,11 @@
 
 ?>
 <ul><?
-foreach (range(1, 10) as $i) { ?> 
+
+foreach (range(1, 10) as $i): ?>
+
 	<li>Item <? echo $i ?></li><?
-} ?> 
+
+endforeach ?>
+
 </ul>
