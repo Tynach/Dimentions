@@ -25,15 +25,12 @@ if (General::ERROR() !== false) {
 		<? echo $navigation->getContent(2) ?>
 	</nav><?
 
-if (isset($error)): ?>
-
+if (isset($error)): ?> 
 
 	<div id="exceptions">
 		<? echo $error->getContent(2) ?>
 	</div><?
-
-endif ?>
-
+endif ?> 
 </header>
 
 <main>
