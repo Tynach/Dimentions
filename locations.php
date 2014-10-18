@@ -13,7 +13,7 @@ class Location extends Settings
 {
 	protected static $values = array(
 		'ROOT' => __DIR__,          // Path to project's root directory.
-		'PUBLIC_HTML' => 'Public',  // Path to public-facing files.
+		'HTTP' => 'Http',  // Path to public-facing files.
 		'TEMPLATES' => 'Templates', // Path to template files.
 		'MODULES' => 'Modules'      // Path to module files.
 	);

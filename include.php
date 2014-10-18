@@ -18,9 +18,9 @@ require_once('locations.php');
 		return sprintf('%s/%s', Location::ROOT(), $file);
 	}
 
-	function publicHtmlPath($file)
+	function httpPath($file)
 	{
-		return sprintf('%s/%s', Location::PUBLIC_HTML(), $file);
+		return sprintf('%s/%s', Location::HTTP(), $file);
 	}
 
 	function templatePath($file)
@@ -41,9 +41,9 @@ require_once('locations.php');
 		include(rootPath($file));
 	}
 
-	function includePublicHtml($file)
+	function includeHttp($file)
 	{
-		include(publicHtmlPath($file));
+		include(httpPath($file));
 	}
 
 	function includeTemplate($file)
@@ -64,9 +64,9 @@ require_once('locations.php');
 		include_once(rootPath($file));
 	}
 
-	function includeOncePublicHtml($file)
+	function includeOnceHttp($file)
 	{
-		include_once(publicHtmlPath($file));
+		include_once(httpPath($file));
 	}
 
 	function includeOnceTemplate($file)
@@ -87,9 +87,9 @@ require_once('locations.php');
 		require(rootPath($file));
 	}
 
-	function requirePublicHtml($file)
+	function requireHttp($file)
 	{
-		require(publicHtmlPath($file));
+		require(httpPath($file));
 	}
 
 	function requireTemplate($file)
@@ -110,9 +110,9 @@ require_once('locations.php');
 		require_once(rootPath($file));
 	}
 
-	function requireOncePublicHtml($file)
+	function requireOnceHttp($file)
 	{
-		require_once(publicHtmlPath($file));
+		require_once(httpPath($file));
 	}
 
 	function requireOnceTemplate($file)
