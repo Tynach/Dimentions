@@ -1,0 +1,9 @@
+SOURCE ratings.mysql
+SOURCE tags.mysql
+SOURCE privileges.mysql
+
+SOURCE users.mysql
+SOURCE user_settings.mysql
+SOURCE user_rating_settings.mysql
+SOURCE user_contact_settings.mysql
+SOURCE user_warnings.mysql

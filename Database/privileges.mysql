@@ -1,0 +1,7 @@
+CREATE TABLE privs ( #List of all privileges
+	priv_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	priv_name VARCHAR(20) NOT NULL,
+
+	PRIMARY KEY (priv_id),
+	UNIQUE INDEX (priv_name)
+) ENGINE = InnoDB;

@@ -1,3 +1,5 @@
+SOURCE ratings.mysql
+
 CREATE TABLE tags (
 	tag_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	tag VARCHAR(20) NOT NULL,
@@ -11,9 +13,11 @@ CREATE TABLE implied_tags (
 	implied_id INT UNSIGNED NOT NULL,
 
 	PRIMARY KEY (tag_id, implied_id),
+
 	FOREIGN KEY (tag_id) REFERENCES tags (tag_id)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
+
 	FOREIGN KEY (implied_id) REFERENCES tags (tag_id)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
@@ -24,19 +28,24 @@ CREATE TABLE tag_aliases (
 	tag_id INT UNSIGNED NOT NULL,
 
 	UNIQUE INDEX (alias),
+
 	FOREIGN KEY (tag_id) REFERENCES tags (tag_id)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
 ) ENGINE = InnoDB;
 
-CREATE TABLE tag_ratings ( #Some tags should not be mixed with some ratings.
+# Some tags should not be mixed with some ratings. If a tag with a higher rating
+# than the current RP's is used, that RP's rating should become the tag's.
+CREATE TABLE tag_ratings (
 	tag_id INT UNSIGNED NOT NULL,
 	rating_id INT UNSIGNED NOT NULL,
 
 	PRIMARY KEY (tag_id),
+
 	FOREIGN KEY (tag_id) REFERENCES tags (tag_id)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
+
+	# If there are tags using the rating, don't let anyone delete it.
 	FOREIGN KEY (rating_id) REFERENCES ratings (rating_id)
-	#^If there are tags using the rating, don't let anyone delete it.
 ) ENGINE = InnoDB;

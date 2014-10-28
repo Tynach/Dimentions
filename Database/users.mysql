@@ -1,0 +1,21 @@
+CREATE TABLE users (
+	user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	username VARCHAR(20) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	birthday DATE NOT NULL,
+	joined DATE NOT NULL,
+
+	PRIMARY KEY (user_id),
+	UNIQUE INDEX (username)
+) ENGINE = InnoDB;
+
+CREATE TABLE logins (
+	user_id INT UNSIGNED NOT NULL,
+	password CHAR(40) NOT NULL,
+
+	PRIMARY KEY (user_id),
+
+	FOREIGN KEY (user_id) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;

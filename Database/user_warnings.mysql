@@ -1,0 +1,24 @@
+SOURCE users.mysql
+
+CREATE TABLE warn_levels (
+	level_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	level_type VARCHAR(20) NOT NULL,
+
+	PRIMARY KEY (level_id),
+	UNIQUE INDEX (level_type)
+) ENGINE = InnoDB;
+
+CREATE TABLE warned_users (
+	user_id INT UNSIGNED NOT NULL,
+	level_id INT UNSIGNED,
+
+	PRIMARY KEY (user_id),
+
+	FOREIGN KEY (user_id) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+
+	FOREIGN KEY (level_id) REFERENCES warn_levels (level_id)
+		ON DELETE SET NULL
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;

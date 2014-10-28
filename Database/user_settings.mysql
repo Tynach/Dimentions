@@ -1,0 +1,30 @@
+SOURCE users.mysql
+
+CREATE TABLE settings (
+	user_id INT UNSIGNED NOT NULL,
+	time_zone FLOAT NOT NULL,
+	dst ENUM('auto', 'yes', 'no') NOT NULL,
+	show_age ENUM('yes', 'no') NOT NULL,
+	show_dob ENUM('no', 'yes') NOT NULL,
+	show_email ENUM('no', 'yes') NOT NULL,
+	invisible ENUM('no', 'yes') NOT NULL,
+	fname VARCHAR(20),
+	lname VARCHAR(20),
+
+	PRIMARY KEY (user_id),
+
+	FOREIGN KEY (user_id) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE signatures (
+	user_id INT UNSIGNED NOT NULL,
+	signature TINYTEXT NOT NULL,
+
+	PRIMARY KEY (user_id),
+
+	FOREIGN KEY (user_id) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;

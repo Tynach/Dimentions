@@ -1,0 +1,24 @@
+SOURCE users.mysql
+
+CREATE TABLE contact_types (
+	type_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	name VARCHAR(20) NOT NULL, #Yahoo, Google+, Facebook...
+
+	PRIMARY KEY (type_id),
+	UNIQUE INDEX (name)
+) ENGINE = InnoDB;
+
+CREATE TABLE contact_info (
+	user_id INT UNSIGNED NOT NULL,
+	type_id INT UNSIGNED NOT NULL,
+	cont_value VARCHAR(100) NOT NULL,
+
+	PRIMARY KEY (user_id, type_id),
+
+	FOREIGN KEY (user_id) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (type_id) REFERENCES contact_types (type_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;

@@ -1,0 +1,17 @@
+SOURCE users.mysql
+SOURCE ratings.mysql
+
+CREATE TABLE rating_settings (
+	user_id INT UNSIGNED NOT NULL,
+	rating_id INT UNSIGNED NOT NULL,
+
+	PRIMARY KEY (user_id, rating_id),
+
+	FOREIGN KEY (user_id) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+
+	FOREIGN KEY (rating_id) REFERENCES ratings (rating_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
