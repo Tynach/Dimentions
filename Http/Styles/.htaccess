@@ -1,4 +1,4 @@
-<Directory />
-	RewriteEngine on
-	RewriteRule \.php(\.[[:alnum:][:punct:]]+)$ $1
-</Directory>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (.*) $1.php

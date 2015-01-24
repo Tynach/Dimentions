@@ -5,15 +5,19 @@
  * designed most specifically for the 'dimentions.php' template.       *
  ***********************************************************************/
 
-ob_start()      // Most text editors will parse this file as HTML, and it screws
-?><style><?     // up the syntax highlighting. Instead, lets use a '<style>' tag
-ob_end_clean(); // to tell at least the editors that support CSS syntax
-                // highlighting inside HTML that they should highlight things
-                // from here on as CSS.
+// Most text editors will parse this file as HTML, and it screws
+// up the syntax highlighting. Instead, lets use a '<style>' tag
+// to tell at least the editors that support CSS syntax
+// highlighting inside HTML that they should highlight things
+// from here on as CSS.
 
-                // We use 'output buffering' so that the tag is not actually
-                // sent to the browser. We of course want to ignore the contents
-                // of the buffer, so we use ob_end_clean().
+// We use 'output buffering' so that the tag is not actually
+// sent to the browser. We of course want to ignore the contents
+// of the buffer, so we use ob_end_clean().
+
+ob_start()
+?><style><?
+ob_end_clean();
 
 // Tell browsers this is a CSS document
 header("Content-type: text/css; charset: UTF-8");
