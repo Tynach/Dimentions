@@ -8,6 +8,8 @@
  * $this represents the current page.                                     *
  **************************************************************************/
 
+requireOnceRoot('module.php');
+
 $navigation = new Module('navigation.php');
 $copyright = new Module('copyright.php');
 

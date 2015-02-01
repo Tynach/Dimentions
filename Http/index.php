@@ -1,6 +1,6 @@
 <?php
 
-include_once('forPages.php');
+require_once('forPages.php');
 
 $page = new Page('dimentions.php');
 $page->title = 'Hello, world!';
