@@ -135,7 +135,7 @@ Single-line comments should also go above or at the end of anything you feel nee
 
 In general, single-line comments go *above* the thing you're explaining when it's a group or series of things that are all related, such as a group of variable declarations or the start of a block.
 
-Single-line comments should generally go *at the end* of any line that's already inside a group or series of related things. These should generally be much shorter, if possible. Otherwise you start doing this:
+Single-line comments *at the end* of any lines that already have code, should be avoided at all costs. If you must have them, they should generally be much shorter. Otherwise you start doing this:
 
 ```PHP
 if (1) {

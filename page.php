@@ -19,7 +19,7 @@
  * the template file believes it is no longer able to use $this for the page. *
  ******************************************************************************/
 
-requireOnceRoot('module.php');
+requireOnceRoot('container.php');
 
 class Page extends Container
 {

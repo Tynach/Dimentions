@@ -11,6 +11,8 @@
  * assumes that the framework itself is properly set up/working.            *
  ****************************************************************************/
 
+requireOnceRoot('general.php');
+
 function handleException($exception)
 {
 	General::insertSetting('ERROR', $exception);

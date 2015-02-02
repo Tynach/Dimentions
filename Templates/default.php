@@ -8,6 +8,8 @@
  * $this represents the current page.                                     *
  **************************************************************************/
 
+requireOnceRoot('module.php');
+
 $navigation = new Module('numbers.php');
 
 if (General::ERROR() !== false) {
