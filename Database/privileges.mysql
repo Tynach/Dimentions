@@ -1,4 +1,5 @@
-CREATE TABLE privs ( #List of all privileges
+-- List of possible privileges
+CREATE IF NOT EXISTS TABLE privs (
 	priv_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	priv_name VARCHAR(20) NOT NULL,
 

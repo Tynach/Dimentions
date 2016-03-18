@@ -1,6 +1,7 @@
 SOURCE users.mysql
 
-CREATE TABLE warn_levels (
+-- Types of warnings to give to misbehaving users
+CREATE TABLE warn_types (
 	level_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	level_type VARCHAR(20) NOT NULL,
 
@@ -8,6 +9,7 @@ CREATE TABLE warn_levels (
 	UNIQUE INDEX (level_type)
 ) ENGINE = InnoDB;
 
+-- Users who have been warned, and what warnings they've been given
 CREATE TABLE warned_users (
 	user_id INT UNSIGNED NOT NULL,
 	level_id INT UNSIGNED,
@@ -18,7 +20,7 @@ CREATE TABLE warned_users (
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 
-	FOREIGN KEY (level_id) REFERENCES warn_levels (level_id)
+	FOREIGN KEY (level_id) REFERENCES warn_types (level_id)
 		ON DELETE SET NULL
 		ON UPDATE CASCADE
 ) ENGINE = InnoDB;

@@ -1,5 +1,10 @@
 SOURCE users.mysql
 
+-- Users' settings
+--
+-- First and last name are optional; perhaps I might shorten it to a single
+-- sort of 'Display Name' field which allows spaces and Unicode characters. Or I
+-- might just remove it completely.
 CREATE TABLE settings (
 	user_id INT UNSIGNED NOT NULL,
 	time_zone FLOAT NOT NULL,
@@ -18,6 +23,11 @@ CREATE TABLE settings (
 		ON UPDATE CASCADE
 ) ENGINE = InnoDB;
 
+-- Forum-style signatures to go under each post
+--
+-- Not sure I'll keep this, hence it separated into another table. I'm not sure
+-- if forum post 'signatures' make sense in a roleplaying setting, where you
+-- might want to be able to smoothly read the roleplay as if it were a story.
 CREATE TABLE signatures (
 	user_id INT UNSIGNED NOT NULL,
 	signature TINYTEXT NOT NULL,

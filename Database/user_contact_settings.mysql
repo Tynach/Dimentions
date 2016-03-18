@@ -1,13 +1,17 @@
 SOURCE users.mysql
 
+-- Types of contact information for a user
+--
+-- Examples are Yahoo IM, Google+/Hangouts, Facebook, email address, etc.
 CREATE TABLE contact_types (
 	type_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	name VARCHAR(20) NOT NULL, #Yahoo, Google+, Facebook...
+	name VARCHAR(20) NOT NULL,
 
 	PRIMARY KEY (type_id),
 	UNIQUE INDEX (name)
 ) ENGINE = InnoDB;
 
+-- Users' contact info
 CREATE TABLE contact_info (
 	user_id INT UNSIGNED NOT NULL,
 	type_id INT UNSIGNED NOT NULL,
