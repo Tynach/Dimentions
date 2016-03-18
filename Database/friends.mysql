@@ -1,0 +1,28 @@
+-- Categories of other users
+--
+-- Similar to Google+'s idea of 'Circles'.
+CREATE TABLE groups (
+	grp_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	user_id INT UNSIGNED NOT NULL,
+	grp_name VARCHAR(20) NOT NULL,
+
+	PRIMARY KEY (grp_id),
+	UNIQUE INDEX (user_id, grp_name),
+	FOREIGN KEY (user_id) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+-- Friends and what groups they're in
+CREATE TABLE friends (
+	grp_id INT UNSIGNED NOT NULL,
+	user_id INT UNSIGNED NOT NULL,
+
+	PRIMARY KEY (grp_id, user_id),
+	FOREIGN KEY (grp_id) REFERENCES groups (grp_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (user_id) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;

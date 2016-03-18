@@ -1,0 +1,54 @@
+SOURCE privileges.mysql
+SOURCE users.mysql
+
+-- Privileges that can be used on users
+--
+-- For example, it doesn't make sense to assign a rating to a user, but it does
+-- make senes to give a user a warning.
+CREATE TABLE user_privs (
+	priv_id INT UNSIGNED NOT NULL,
+
+	PRIMARY KEY (priv_id),
+	FOREIGN KEY (priv_id) REFERENCES privs (priv_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+-- Site-wide moderators and the user-moderating privileges they've been given
+CREATE TABLE user_mods (
+	user_id INT UNSIGNED NOT NULL,
+	priv_id INT UNSIGNED NOT NULL,
+
+	PRIMARY KEY (user_id, priv_id),
+	FOREIGN KEY (user_id) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (priv_id) REFERENCES user_privs (priv_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+-- A log of the warnings given to users
+--
+-- Is this redundant with 'warned_users'? I initially had this set up as a way
+-- to let users make up for bad behavior... But that's a little too specific for
+-- something that's site-wide.
+--
+-- I'll consider moving most of these values to user_warnings, or perhaps move
+-- the values in user_warnings to this table.
+CREATE TABLE behavior (
+	record_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	user_id INT UNSIGNED NOT NULL,
+	note VARCHAR(100) NOT NULL,
+	moderator INT UNSIGNED,
+	occurred DATETIME NOT NULL,
+	value INT NOT NULL,
+
+	PRIMARY KEY (record_id),
+	FOREIGN KEY (user_id) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (moderator) REFERENCES user_mods (user_id)
+		ON DELETE SET NULL
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;

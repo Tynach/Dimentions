@@ -1,0 +1,17 @@
+-- Messages sent from one user to another
+CREATE TABLE priv_msgs (
+	msg_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	sender INT UNSIGNED NOT NULL,
+	reciever INT UNSIGNED NOT NULL,
+	title VARCHAR(100) NOT NULL,
+	content TEXT NOT NULL,
+	sent DATETIME NOT NULL,
+
+	PRIMARY KEY (msg_id),
+	FOREIGN KEY (sender) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (reciever) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;

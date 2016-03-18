@@ -1,0 +1,101 @@
+CREATE TABLE clubs (
+	club_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	owner_id INT UNSIGNED NOT NULL,
+	rating_id INT UNSIGNED NOT NULL,
+	name VARCHAR(100) NOT NULL,
+	description TEXT NOT NULL,
+	created DATETIME NOT NULL,
+
+	PRIMARY KEY (club_id),
+	UNIQUE INDEX (name),
+	FOREIGN KEY (owner_id) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (rating_id) REFERENCES ratings (rating_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE club_members (
+	club_id INT UNSIGNED NOT NULL,
+	user_id INT UNSIGNED NOT NULL,
+
+	PRIMARY KEY (club_id, user_id),
+	FOREIGN KEY (club_id) REFERENCES clubs (club_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (user_id) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+#Club Message Boards - simple forums
+
+CREATE TABLE club_topics (
+	topic_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	club_id INT UNSIGNED NOT NULL,
+	user_id INT UNSIGNED NOT NULL,
+	created DATETIME NOT NULL,
+	name VARCHAR(100) NOT NULL,
+
+	PRIMARY KEY (topic_id),
+	INDEX (topic_id, club_id),
+	FOREIGN KEY (club_id, user_id) REFERENCES club_members (club_id, user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE club_posts (
+	post_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	topic_id INT UNSIGNED NOT NULL,
+	club_id INT UNSIGNED NOT NULL,
+	user_id INT UNSIGNED NOT NULL,
+	created DATETIME NOT NULL,
+	content TEXT NOT NULL,
+
+	PRIMARY KEY (post_id),
+	FOREIGN KEY (topic_id, club_id) REFERENCES club_topics (topic_id, club_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (club_id, user_id) REFERENCES club_members (club_id, user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+#Club Moderators
+
+CREATE TABLE club_privs (
+	priv_id INT UNSIGNED NOT NULL,
+
+	PRIMARY KEY (priv_id),
+	FOREIGN KEY (priv_id) REFERENCES privs (priv_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE club_mods (
+	club_id INT UNSIGNED NOT NULL,
+	user_id INT UNSIGNED NOT NULL,
+	priv_id INT UNSIGNED NOT NULL,
+
+	PRIMARY KEY (club_id, user_id, priv_id),
+	FOREIGN KEY (club_id, user_id) REFERENCES club_members (club_id, user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (priv_id) REFERENCES club_privs (priv_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE club_global_mods (
+	user_id INT UNSIGNED NOT NULL,
+	priv_id INT UNSIGNED NOT NULL,
+
+	PRIMARY KEY (user_id, priv_id),
+	FOREIGN KEY (user_id) REFERENCES users (user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (priv_id) REFERENCES club_privs (priv_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+) ENGINE = InnoDB;
