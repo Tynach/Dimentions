@@ -179,9 +179,9 @@ The placement of PHP's start and end tags depends on how you are using the PHP. 
 If your file ends with PHP code, leave off the ending tag.
 
 #### Inline with Output
-If, and **only** if, you need to echo a variable inside what is otherwise *not* PHP, you should write your PHP inline with your document. This essentially means you'll have your document's code to the right of your PHP, and more to the left of your PHP.
+If, and **only** if you need to echo a variable inside what is otherwise *not* PHP, you should write your PHP inline with your document. This essentially means you'll have your document's code to the right of your PHP, and more to the left of your PHP.
 
-When using inline PHP, use short PHP tags. The word 'php' at the end lowers readability and takes the focus away from the actual code's content, because mixing two languages like this already forces the brain to switch contexts.
+When using inline PHP, use short PHP 'echo' tags.
 
 In general, having as little inline code as possible will improve readability. Here's an example of PHP code inline with HTML:
 
@@ -190,40 +190,38 @@ In general, having as little inline code as possible will improve readability. H
 <title><?php echo($title); ?> - My Website</title>
 
 <!-- This is right: -->
-<title><? echo $title ?> - My Website</title>
+<title><?= $title ?> - My Website</title>
 ```
 
-I'm not sure if I like the shorter '`<?= $title ?>`' form or not; seeing '`?=`' makes me automatically think it's asking a question, or assigning a value; looks almost like a contender for replacing '`==`'. Using '`echo`' clearly indicates what the code does, so I personally prefer it.
-
 #### Large block
-Any time you have a block of code that has nothing to do with generating output, use the full '`<?php`' start tag. If this is at the top of the document, then the '`<`' character should be the very first character of the document. ***AVOID UNICODE FILES THAT USE THE BYTE-ORDER MARK.*** Such files cause output to be sent to the buffer early, and especially if do this on one of your pages, you might have some very messy side effects.
+Use the full '`<?php`' start tag at all other times. If this is at the top of the document, then the '`<`' character should be the very first character of the document. ***AVOID UNICODE FILES THAT USE THE BYTE-ORDER MARK.*** Such files might cause output to be sent to the buffer early, and you might have some very messy side effects, especially if you do this on one of your pages.
 
 After the start tag, put a blank line before you start your actual PHP code. 
 
 #### Mixed with Output
 In contrast with PHP code inline with your output, sometimes you're writing code that formats and writes the output itself. While this might logically sound like the place to '`echo`' your output code, **don't**. Another thing to avoid is doing this along-side your 'business logic'. *Always keep business logic and output logic separate*.
 
-Instead, use PHP short tags (to improve readability), and always put the PHP tag at the *end* of the current line. This is because we read from left to right, and as a result, we want the left side of the code to be as readable as possible. Also, having the actual PHP code on new lines helps the brain switch to the new language's context. Here's an example:
+Always put the PHP tag at the *end* of the current line. This is because we read from left to right, and as a result, we want the left side of the code to be as readable as possible. Also, having the actual PHP code on new lines helps the brain switch to the new language's context. Here's an example:
 
 ```HTML+PHP
-<ul><?
+<ul><?php
 foreach (range(1, 10) as $i) { ?> 
-	<li>Item <? echo $i ?></li><?
+	<li>Item <?= $i ?></li><?php
 } ?> 
 </ul>
 ```
 
 Some important details:
 
-Each ending tag has a space after it, so that the newline that comes after it is counted. The only bad thing this causes is an extra space after some lines of your output. But this allows you to cleanly format your output with clean and sane indentation.
+Each ending tag has a space after it so that the newline that comes after it is counted. The only bad thing this causes is an extra space after some lines of your output. But this allows you to cleanly format your output with clean and sane indentation.
 
 The PHP code is not indented any further than the output that *surrounds* it, and any output that's *inside* it is indented further. This keeps indentation clean for both the PHP and the resulting output. If you find yourself having to indent a lot before even sending *any* output, you're probably mixing 'business logic' with 'formatting logic'. Don't do that.
 
 Of course, nested indentation levels are fine when you have output at each level, or at all levels except the top ones, with none skipped. For example, if you have to indent 5 levels, you can have output at: the first; first and second; first, second, and third; first, second, third, and fourth; and first, second, third, fourth, and fifth levels.
 
 ## HTML, Javascript, CSS...
-Browser support is one of the lowest priorities. The absolute highest priority is that we need to stick with what is a defined standard. This is so that, in the future, all browsers (that are up to date) will eventually support it anyway. Browser-specific things are to be avoided wherever possible (unless they're things like -moz- or -webkit- in CSS, and are needed to implement something that is standardized in a specific browser).
+Browser support is one of the lowest priorities. The absolute highest priority is that we need to stick with what is a defined standard. This is so that, in the future, all browsers (that are up to date) will eventually support it anyway. Browser-specific things are to be avoided wherever possible.
 
 Minimalism is also extremely important. Keeping the amount of code down to a minimum, while still doing what we want, is key. As a matter of principle, anything sent to the client should be used by said client, with few exceptions. Such exceptions might be things like CSS rules that don't deal with a particular page (because the relevant element doesn't exist). However, the number of unused bits of code should be kept as absolutely low as possible, and should **never** be the contents of an entire file.
 
-The goal is for maximum readability. Ideally, we'd have code readable without even syntax highlighting (for both generated and static code), but at at least have readable code when only syntax highlighting is available.
+The goal is for maximum readability. Ideally, we'd have code readable without even syntax highlighting (for both generated and static code), but at least have readable code when only syntax highlighting (but not automatic code formatting) is available.

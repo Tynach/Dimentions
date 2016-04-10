@@ -11,7 +11,7 @@ require_once('settings.php');
 
 class Location extends Settings
 {
-	protected static $values = array(
+	protected static $values = [
 		// Path to project's root directory.
 		'ROOT' => __DIR__,
 
@@ -23,7 +23,7 @@ class Location extends Settings
 
 		// Path to module files.
 		'MODULES' => 'Modules'
-	);
+	];
 
 	// Get the absolute path for the directory.
 	public static function __callstatic($name, $arguments)
