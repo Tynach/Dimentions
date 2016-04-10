@@ -19,22 +19,21 @@ if (General::ERROR() !== false) {
 ?>
 <!DOCTYPE html>
 
-<title><? echo $this->title ?> - Sample Dry Website</title>
+<title><?= $this->title ?> - Sample Dry Website</title>
 <meta charset="utf-8">
 
 <header>
 	<nav>
-		<? echo $navigation->getContent(2) ?>
-	</nav><?
-
+		<?= $navigation->getContent(2) ?>
+	</nav><?php
 if (isset($error)): ?> 
 
 	<div id="exceptions">
-		<? echo $error->getContent(2) ?>
-	</div><?
+		<?= $error->getContent(2) ?>
+	</div><?php
 endif ?> 
 </header>
 
 <main>
-	<?php echo $this->getContent(1) ?>
+	<?= $this->getContent(1) ?>
 </main>

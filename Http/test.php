@@ -13,7 +13,7 @@ $page = new Page('default.php');
 $page->title = 'Hello, world!';
 
 ?>
-<p>Hello, world!<?
+<p>Hello, world!<?php
 // Demonstrate exception handling in the default template. Uncommenting this
 // line will create an otherwise omitted 'Exception' div with a list of
 // exceptions that occured that were not handled. Probably only one.

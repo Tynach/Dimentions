@@ -5,8 +5,8 @@
  **********************************************************/
 
 ?>
-<ul><?
+<ul><?php
 foreach (range(1, 10) as $i): ?> 
-	<li>Item <? echo $i ?></li><?
+	<li>Item <?= $i ?></li><?php
 endforeach ?> 
 </ul>

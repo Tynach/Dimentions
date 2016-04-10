@@ -13,4 +13,4 @@ if ($problem === false) {
 }
 
 ?>
-<p><? echo $problem->getmessage();
+<p><?= $problem->getmessage();
