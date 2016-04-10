@@ -16,7 +16,7 @@
 // of the buffer, so we use ob_end_clean().
 
 ob_start()
-?><style><?
+?><style><?php
 ob_end_clean();
 
 // Tell browsers this is a CSS document
@@ -66,10 +66,10 @@ header {
 }
 
 header > h1 {
-	height: <? echo $logoHeight ?>rem;
+	height: <?= $logoHeight ?>rem;
 	display: table-cell;
 	vertical-align: bottom;
-	font-size: <? echo $logoHeight - 0.5 ?>rem;
+	font-size: <?= $logoHeight - 0.5 ?>rem;
 }
 
 
@@ -77,9 +77,9 @@ header > h1 {
 
 nav#primary {
 	position: absolute;
-	top: <? echo $logoHeight ?>rem;
+	top: <?= $logoHeight ?>rem;
 	left: 0;
-	width: <? echo $navWidth ?>rem;
+	width: <?= $navWidth ?>rem;
 	overflow: auto;
 }
 
@@ -112,8 +112,8 @@ nav#primary > ul > li li {
  ***********************/
 
 main {
-	margin-left: <? echo $navWidth ?>rem;
-	padding-bottom: <? echo $footerHeight ?>rem;
+	margin-left: <?= $navWidth ?>rem;
+	padding-bottom: <?= $footerHeight ?>rem;
 }
 
 main p {
@@ -130,12 +130,12 @@ footer {
 	font-size: 0.8em;
 	position: absolute;
 	bottom: 0;
-	left: <? echo $navWidth ?>rem;
+	left: <?= $navWidth ?>rem;
 }
 
 footer p {
-	height: <? echo $footerHeight ?>rem;
-	line-height: <? echo $footerHeight ?>rem;
+	height: <?= $footerHeight ?>rem;
+	line-height: <?= $footerHeight ?>rem;
 	vertical-align: middle;
 	margin: 0 0.5rem;
 }
@@ -145,10 +145,10 @@ footer p {
  * Small Screen Rendering *
  **************************/
 
-@media screen and (max-width: <? echo $navWidth * 3 ?>rem)
+@media screen and (max-width: <?= $navWidth * 3 ?>rem)
 {
 	nav#primary {
-		left: -<? echo $navWidth ?>rem;
+		left: -<?= $navWidth ?>rem;
 	}
 
 	main {

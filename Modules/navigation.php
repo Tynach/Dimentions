@@ -18,14 +18,14 @@ $actions = array(
 
 ?>
 <nav id="primary">
-	<ul><?
+	<ul><?php
 	foreach ($actions as $category => $subCategories) { ?> 
-		<li><? echo $category ?> 
-			<ul><?
+		<li><?= $category ?> 
+			<ul><?php
 			foreach ($subCategories as $item) { ?> 
-				<li><? echo $item ?><?
+				<li><? echo $item ?><?php
 			} ?> 
-			</ul><?
+			</ul><?php
 	} ?> 
 		<li>Settings
 	</ul>
