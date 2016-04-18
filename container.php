@@ -26,13 +26,10 @@ abstract class Container
 	// Return an indented copy of the container's contents.
 	private function indent($indent)
 	{
-		return sprintf("%s\n",
-			str_replace("\n",
-				sprintf("\n%s",
-					str_repeat(General::INDENT(), $indent)
-				), $this->content
-			)
-		);
+		$line_start = str_repeat(General::INDENT(), $indent);
+		$output = str_replace("\n", "\n" . $line_start, $this->content);
+
+		return sprintf("%s\n", $output);
 	}
 
 	// Put the contents of the output buffer into the container.
