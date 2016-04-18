@@ -131,7 +131,7 @@ Single-line comments look like this:
 // longer than it really needs to be, just to help an example I mentioned above.
 ```
 
-Single-line comments should also go above or at the end of anything you feel needs explaining. For example, if you have pre-set the values of an array, you might put each value on a new line with a single-line comment at the end of it to explain the value.
+Single-line comments should go above or at the end of anything you feel needs explaining. For example, if you have pre-set the values of an array, you might put each value on a new line with a single-line comment at the end of it to explain the value.
 
 In general, single-line comments go *above* the thing you're explaining when it's a group or series of things that are all related, such as a group of variable declarations or the start of a block.
 
