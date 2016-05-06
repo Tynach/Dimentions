@@ -15,6 +15,8 @@
 
 abstract class Settings
 {
+	protected static $values = [];
+
 	// Returns false if the setting $value refers to does not exist.
 	public static function __callstatic($name, $arguments)
 	{
