@@ -28,5 +28,6 @@ $actions = array(
 			</ul><?php
 	} ?> 
 		<li>Settings
+		<li><a href="https://github.com/Tynach/Dimentions">Source Code</a>
 	</ul>
 </nav>
