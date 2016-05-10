@@ -1,1 +1,1 @@
-<p>Copyright &copy; Colin "Tynach" Griffith, 2014.
+<p>Copyright © Colin "Tynach" Griffith, 2014-2016.
