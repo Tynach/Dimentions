@@ -23,7 +23,7 @@ $actions = array(
 		<li><?= $category ?> 
 			<ul><?php
 			foreach ($subCategories as $item) { ?> 
-				<li><? echo $item ?><?php
+				<li><?= $item ?><?php
 			} ?> 
 			</ul><?php
 	} ?> 
