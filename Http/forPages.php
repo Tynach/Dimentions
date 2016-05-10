@@ -7,3 +7,4 @@
 
 require_once('necessary.php');
 requireOnceRoot('page.php');
+requireOnceRoot('database.php');
