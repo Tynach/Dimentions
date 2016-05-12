@@ -23,9 +23,7 @@ abstract class Database
 	// The last query statement used.
 	private $statement;
 
-	// We make the constructor protected because this is an abstract class,
-	// and we only want classes that extend this class to call it.
-	protected function __construct()
+	public function __construct()
 	{
 		require_once("../../password.php");
 
