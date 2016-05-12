@@ -47,7 +47,7 @@ abstract class Database
 	{
 		$i = 1;
 
-		foreach ($parameters as $parameter) {
+		foreach ($parameters as &$parameter) {
 			$this->statement->bindParam($i, $parameter);
 			$i++;
 		}
