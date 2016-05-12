@@ -8,4 +8,4 @@
 require_once('../include.php');
 
 // Necessary files:
-requireOnceRoot('exceptions.php');
+//None at the moment.
