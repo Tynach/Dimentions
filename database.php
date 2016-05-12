@@ -38,13 +38,6 @@ abstract class Database
 	final protected function query($query)
 	{
 		$statement = $connection->prepare($query);
-
-		$i = 1;
-
-		foreach ($parameters as $parameter) {
-			$statement->bindParam($i, $parameter);
-			$i++;
-		}
 	}
 
 	// Binds the given parameters to the query statement. Any number of
