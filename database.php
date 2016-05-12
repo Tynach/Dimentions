@@ -27,17 +27,17 @@ abstract class Database
 	{
 		require_once("../../password.php");
 
-		$string = "mysql:host=localhost;dbname=$dbname";
+		$string = "mysql:host=localhost;dbname={$this->dbname}";
 		$options = [PDO::ATTR_PERSISTENT => true];
 
-		$connection = new PDO($string, $username, $password, $options);
+		$this->connection = new PDO($string, $username, $password, $options);
 	}
 
 	// This method sets up a query statement. Only classes that extend this
 	// class can access it.
 	final protected function query($query)
 	{
-		$statement = $connection->prepare($query);
+		$this->statement = $this->connection->prepare($query);
 	}
 
 	// Binds the given parameters to the query statement. Any number of
@@ -48,7 +48,7 @@ abstract class Database
 		$i = 1;
 
 		foreach ($parameters as $parameter) {
-			$statement->bindParam($i, $parameter);
+			$this->statement->bindParam($i, $parameter);
 			$i++;
 		}
 	}
@@ -57,7 +57,7 @@ abstract class Database
 	// classes extending this class can use it.
 	final protected function execute()
 	{
-		$statement->execute();
-		return $statement->fetchAll();
+		$this->statement->execute();
+		return $this->statement->fetchAll();
 	}
 }
