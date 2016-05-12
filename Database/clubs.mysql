@@ -1,4 +1,4 @@
-CREATE TABLE clubs (
+CREATE TABLE IF NOT EXISTS clubs (
 	club_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	owner_id INT UNSIGNED NOT NULL,
 	rating_id INT UNSIGNED NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE clubs (
 		ON UPDATE CASCADE
 ) ENGINE = InnoDB;
 
-CREATE TABLE club_members (
+CREATE TABLE IF NOT EXISTS club_members (
 	club_id INT UNSIGNED NOT NULL,
 	user_id INT UNSIGNED NOT NULL,
 
@@ -31,7 +31,7 @@ CREATE TABLE club_members (
 
 #Club Message Boards - simple forums
 
-CREATE TABLE club_topics (
+CREATE TABLE IF NOT EXISTS club_topics (
 	topic_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	club_id INT UNSIGNED NOT NULL,
 	user_id INT UNSIGNED NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE club_topics (
 		ON UPDATE CASCADE
 ) ENGINE = InnoDB;
 
-CREATE TABLE club_posts (
+CREATE TABLE IF NOT EXISTS club_posts (
 	post_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	topic_id INT UNSIGNED NOT NULL,
 	club_id INT UNSIGNED NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE club_posts (
 
 #Club Moderators
 
-CREATE TABLE club_privs (
+CREATE TABLE IF NOT EXISTS club_privs (
 	priv_id INT UNSIGNED NOT NULL,
 
 	PRIMARY KEY (priv_id),
@@ -73,7 +73,7 @@ CREATE TABLE club_privs (
 		ON UPDATE CASCADE
 ) ENGINE = InnoDB;
 
-CREATE TABLE club_mods (
+CREATE TABLE IF NOT EXISTS club_mods (
 	club_id INT UNSIGNED NOT NULL,
 	user_id INT UNSIGNED NOT NULL,
 	priv_id INT UNSIGNED NOT NULL,
@@ -87,7 +87,7 @@ CREATE TABLE club_mods (
 		ON UPDATE CASCADE
 ) ENGINE = InnoDB;
 
-CREATE TABLE club_global_mods (
+CREATE TABLE IF NOT EXISTS club_global_mods (
 	user_id INT UNSIGNED NOT NULL,
 	priv_id INT UNSIGNED NOT NULL,
 

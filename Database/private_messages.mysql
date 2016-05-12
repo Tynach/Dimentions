@@ -1,5 +1,5 @@
 -- Messages sent from one user to another
-CREATE TABLE priv_msgs (
+CREATE TABLE IF NOT EXISTS priv_msgs (
 	msg_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	sender INT UNSIGNED NOT NULL,
 	reciever INT UNSIGNED NOT NULL,

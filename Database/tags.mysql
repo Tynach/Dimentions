@@ -1,7 +1,7 @@
 SOURCE ratings.mysql
 
 -- All possible tags
-CREATE TABLE tags (
+CREATE TABLE IF NOT EXISTS tags (
 	tag_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	tag VARCHAR(20) NOT NULL,
 
@@ -10,7 +10,7 @@ CREATE TABLE tags (
 ) ENGINE = InnoDB;
 
 -- Tags which automatically add other tags when used
-CREATE TABLE implied_tags (
+CREATE TABLE IF NOT EXISTS implied_tags (
 	tag_id INT UNSIGNED NOT NULL,
 	implied_id INT UNSIGNED NOT NULL,
 
@@ -26,7 +26,7 @@ CREATE TABLE implied_tags (
 ) ENGINE = InnoDB;
 
 -- Other names for tags that redirect to the real tag when used
-CREATE TABLE tag_aliases (
+CREATE TABLE IF NOT EXISTS tag_aliases (
 	alias VARCHAR(20) NOT NULL,
 	tag_id INT UNSIGNED NOT NULL,
 
@@ -42,7 +42,7 @@ CREATE TABLE tag_aliases (
 -- Some tags should not be mixed with some ratings. If a tag with a higher
 -- rating than the current RP's is used, that RP's rating should turn into the
 -- tag's own rating.
-CREATE TABLE tag_ratings (
+CREATE TABLE IF NOT EXISTS tag_ratings (
 	tag_id INT UNSIGNED NOT NULL,
 	rating_id INT UNSIGNED NOT NULL,
 

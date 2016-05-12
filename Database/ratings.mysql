@@ -2,7 +2,7 @@
 --
 -- Examples include R, PG-13, PG, etc. Or perhaps I might use descriptive terms
 -- like 'Graphic Violence' instead; I haven't decided.
-CREATE IF NOT EXISTS TABLE ratings (
+CREATE TABLE IF NOT EXISTS ratings (
 	rating_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	rating VARCHAR(10) NOT NULL,
 	age TINYINT UNSIGNED NOT NULL,

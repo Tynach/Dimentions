@@ -1,7 +1,7 @@
 SOURCE users.mysql
 
 -- Types of warnings to give to misbehaving users
-CREATE TABLE warn_types (
+CREATE TABLE IF NOT EXISTS warn_types (
 	level_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	level_type VARCHAR(20) NOT NULL,
 
@@ -10,7 +10,7 @@ CREATE TABLE warn_types (
 ) ENGINE = InnoDB;
 
 -- Users who have been warned, and what warnings they've been given
-CREATE TABLE warned_users (
+CREATE TABLE IF NOT EXISTS warned_users (
 	user_id INT UNSIGNED NOT NULL,
 	level_id INT UNSIGNED,
 

@@ -1,5 +1,5 @@
 -- User information necessary to sign up
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
 	user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	username VARCHAR(20) NOT NULL,
 	email VARCHAR(50) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE users (
 -- This is kept separate so that system administrators can assign a specific
 -- database user for accessing it, which can also ensure that only certain pages
 -- are able to read or write to the password table.
-CREATE TABLE user_passwords (
+CREATE TABLE IF NOT EXISTS user_passwords (
 	user_id INT UNSIGNED NOT NULL,
 	password CHAR(40) NOT NULL,
 

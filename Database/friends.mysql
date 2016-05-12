@@ -1,7 +1,7 @@
 -- Categories of other users
 --
 -- Similar to Google+'s idea of 'Circles'.
-CREATE TABLE groups (
+CREATE TABLE IF NOT EXISTS groups (
 	grp_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	user_id INT UNSIGNED NOT NULL,
 	grp_name VARCHAR(20) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE groups (
 ) ENGINE = InnoDB;
 
 -- Friends and what groups they're in
-CREATE TABLE friends (
+CREATE TABLE IF NOT EXISTS friends (
 	grp_id INT UNSIGNED NOT NULL,
 	user_id INT UNSIGNED NOT NULL,
 
