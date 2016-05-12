@@ -15,7 +15,7 @@
 abstract class Database
 {
 	// The database's name shouldn't change unless you derive the class.
-	protected $dbname = "test";
+	protected $dbname = "dimentions";
 
 	// The connection is private so that we can limit direct access.
 	private $connection;
