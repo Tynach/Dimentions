@@ -23,7 +23,8 @@ abstract class Database
 	// The last query statement used.
 	private $statement;
 
-	// We make the constructor protected so that 
+	// We make the constructor protected because this is an abstract class,
+	// and we only want classes that extend this class to call it.
 	protected function __construct()
 	{
 		require_once("../../password.php");
@@ -34,14 +35,24 @@ abstract class Database
 		$connection = new PDO($string, $username, $password, $options);
 	}
 
-	// The connection is accessed by this method, which only subclasses can
-	// access. We mark it as final so that it won't be made public.
+	// This method sets up a query statement. Only classes that extend this
+	// class can access it.
 	final protected function query($query)
 	{
 		$statement = $connection->prepare($query);
+
+		$i = 1;
+
+		foreach ($parameters as $parameter) {
+			$statement->bindParam($i, $parameter);
+			$i++;
+		}
 	}
 
-	final protected function execute(&...$parameters)
+	// Binds the given parameters to the query statement. Any number of
+	// parameters can be given, and they are passed as a reference rather
+	// than a value. Only classes that extend this class may access it.
+	final protected function bind(&...$parameters)
 	{
 		$i = 1;
 
@@ -49,7 +60,12 @@ abstract class Database
 			$statement->bindParam($i, $parameter);
 			$i++;
 		}
+	}
 
+	// This method performs the query and returns all of the results. Only
+	// classes extending this class can use it.
+	final protected function execute()
+	{
 		$statement->execute();
 		return $statement->fetchAll();
 	}
